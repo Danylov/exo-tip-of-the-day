@@ -7,7 +7,7 @@ export default class App extends Component {
         super(props);
         const currDate = new Date().toISOString().slice(0, 10);
         this.state = {
-            w_tt_inp: '47%',
+            w_tt_inp: '44%',
             w_oth_inp: '12%',
             w_oth_mrg: '0.3%',
             vis_oth: "visible",
@@ -18,13 +18,13 @@ export default class App extends Component {
         this.oth_inpChange = (e) => {
             (e.target.value === "system") ?
                 this.setState({
-                    w_tt_inp: '73%',
+                    w_tt_inp: '72%',
                     w_oth_inp: '0%',
                     w_oth_mrg: '0%',
                     vis_oth: "hidden"
                 }) :
                 this.setState({
-                    w_tt_inp: '47%',
+                    w_tt_inp: '44%',
                     w_oth_inp: '12%',
                     w_oth_mrg: '0.3%',
                     vis_oth: "visible"
@@ -39,21 +39,31 @@ export default class App extends Component {
         this.b_f2xClick = (e) => {
             this.setState({vis_f2: "hidden"});
         }
+        this.tooltipShow = () => {
+            var copiedText = document.getElementById("tt_inp");
+            copiedText.select();
+            document.execCommand("copy");
+            var tooltiptext = document.getElementById("tooltiptext");
+            tooltiptext.innerHTML = copiedText.value;
+        }
     }
 
     render()
     {
         return (
             <section>
-                <form id="f1" className="form-horizontal" style={{visibility: this.state.vis_f1}}>
+                <form id="f1" className="form-horizontal"  style={{visibility: this.state.vis_f1}}>
                     <div className="form-group">
                         <div className="main_cont1  d-flex">
                             <button type="button" className="btn btn-default">
                                 <i className="uiIconQuestion uiIconDarkGray"/>
                             </button>
-                            <input className="tt_inp" placeholder="Tip text ..."
-                                   style={{width: this.state.w_tt_inp}}/>
-                            <input className="oth_inp" placeholder="via $USER"
+                            <div className="div_toolpit"  style={{width: this.state.w_tt_inp}}
+                            onMouseOver={this.tooltipShow}>
+                                <input id="tt_inp"  placeholder="Tip text ..." />
+                            <span id="tooltiptext" />
+                            </div>
+                            <input id="oth_inp" placeholder="via $USER"
                                    style={{
                                        width: this.state.w_oth_inp,
                                        margin: this.state.w_oth_mrg,

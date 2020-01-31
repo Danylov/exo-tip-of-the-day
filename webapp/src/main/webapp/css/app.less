@@ -15,14 +15,66 @@
   width:  99%;
 }
 
-.main_cont1 .tt_inp {
+.div_toolpit {
+  display:inline-block;
   height:        1.1rem;
   margin:        0.3%;
+}
+
+.div_toolpit #tt_inp {
+  width:       100%;
   border-radius: 5px;
   white-space: nowrap;
   overflow:    hidden;
   background:  white;
-  position: relative;
+}
+
+.main_cont1 #oth_inp {
+  height:        0.9rem;
+  border-radius: 5px;
+  white-space: nowrap;
+  overflow:    hidden;
+  background:  white;
+  padding:     3px;
+}
+
+.main_cont1 button, .main_cont2 button {
+  margin:        0.3%;
+  border-radius: 5px;
+  width:         5%;
+  height:        1.5rem;
+}
+
+
+.main_cont2 #s_b {
+  margin:        0.3%;
+  border-radius: 5px;
+  width:        10%;
+  height:        1.5rem;
+}
+
+.main_cont2 .t_a {
+  margin:        0.3%;
+  border-radius: 5px;
+  width:        77%;
+  height:       50px;
+  line-height:  40px;
+}
+
+.div_toolpit #tooltiptext {
+  visibility:       hidden;
+  width:            270px;
+  background-color: yellow;
+  color:            black;
+  text-align:       center;
+  border-radius:    6px;
+  padding:          5px 0;
+  position:         absolute;
+  z-index:          1;
+}
+
+.div_toolpit:hover #tooltiptext {
+  visibility: visible;
 }
 
 //.main_cont1.tt_inp:before{
@@ -50,34 +102,3 @@
 //  background: -ms-linear-gradient(left, rgba(255,204,0, 0.2), #fc0 100%);
 //  background: linear-gradient(to right, rgba(255,204,0, 0.2), #fc0 100%);
 //}
-
-.main_cont1 .oth_inp {
-  height:        0.9rem;
-  border-radius: 5px;
-  white-space: nowrap;
-  overflow:    hidden;
-  background:  white;
-  padding:     3px;
-}
-
-.main_cont1 button, .main_cont2 button {
-  margin:        0.3%;
-  border-radius: 5px;
-  width:         5%;
-  height:        1.5rem;
-}
-
-.main_cont2 #s_b {
-  margin:        0.3%;
-  border-radius: 5px;
-  width:        10%;
-  height:        1.5rem;
-}
-
-.main_cont2 .t_a {
-  margin:        0.3%;
-  border-radius: 5px;
-  width:        77%;
-  height:       50px;
-  line-height:  40px;
-}
