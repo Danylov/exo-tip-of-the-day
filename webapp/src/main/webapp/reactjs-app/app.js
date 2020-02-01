@@ -8,8 +8,8 @@ export default class App extends Component {
         const currDate = new Date().toISOString().slice(0, 10);
         this.state = {
             w_tt_inp: '44%',
-            w_oth_inp: '12%',
-            w_oth_mrg: '0.3%',
+            w_oth_inp: '11%',
+            w_oth_mrg: '3pt',
             vis_oth: "visible",
             vis_f1: "visible",
             vis_f2: "hidden",
@@ -18,15 +18,15 @@ export default class App extends Component {
         this.oth_inpChange = (e) => {
             (e.target.value === "system") ?
                 this.setState({
-                    w_tt_inp: '72%',
+                    w_tt_inp: '68%',
                     w_oth_inp: '0%',
-                    w_oth_mrg: '0%',
+                    w_oth_mrg: '0pt',
                     vis_oth: "hidden"
                 }) :
                 this.setState({
                     w_tt_inp: '44%',
-                    w_oth_inp: '12%',
-                    w_oth_mrg: '0.3%',
+                    w_oth_inp: '11%',
+                    w_oth_mrg: '3pt',
                     vis_oth: "visible"
                 });
         }
@@ -46,6 +46,16 @@ export default class App extends Component {
             var tooltiptext = document.getElementById("tooltiptext");
             tooltiptext.innerHTML = copiedText.value;
         }
+        this.getData = () => {
+            fetch('/portal/rest/tipoftheday/random').then(response => response.json())
+                .then((jsonData) => {
+                    var tt_inp = document.getElementById("tt_inp");
+                    tt_inp.value = jsonData.text;
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+        }
     }
 
     render()
@@ -63,20 +73,20 @@ export default class App extends Component {
                                 <input id="tt_inp"  placeholder="Tip text ..." />
                             <span id="tooltiptext" />
                             </div>
-                            <input id="oth_inp" placeholder="via $USER"
+                            <input id="user_inp" placeholder="via $USER"
                                    style={{
                                        width: this.state.w_oth_inp,
                                        margin: this.state.w_oth_mrg,
                                        visibility: this.state.vis_oth
                                    }}
                                    onChange={(e) => this.oth_inpChange(e)}/>
-                            <input  className="oth_inp"  placeholder="$DATETIME"  defaultValue={this.state.currDate}
+                            <input  id="date_inp"  placeholder="$DATETIME"  defaultValue={this.state.currDate}
                                     style={{
                                         width: this.state.w_oth_inp,
                                         margin: this.state.w_oth_mrg,
                                         visibility: this.state.vis_oth
                                     }}/>
-                            <button type="button" className="btn btn-default">
+                            <button type="button" className="btn btn-default"  onClick={this.getData}>
                                 <span className="uiIconNew uiIconDarkGray"/>
                             </button>
                             <button type="button" className="btn btn-default"
